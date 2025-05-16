@@ -37,39 +37,7 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-</script>
-<!DOCTYPE html>
+        </script><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -101,28 +69,20 @@
       flex-direction: column;
       min-height: 100vh;
       box-sizing: border-box;
-      padding-top: 150px;
+      padding-top: 120px;
     }
     .header {
       background-color: #1e90ff;
       color: #ffffff;
-      padding: 5px;
+      padding: 10px;
       border-bottom: 5px solid #ff6f61;
       position: fixed;
       top: 0;
       width: 100%;
       max-width: 1200px;
       box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      height: 60px;
+      text-align: center;
       z-index: 1001;
-    }
-    .title-container {
-      width: 70%;
-      padding-left: 5px;
     }
     .header h1 {
       margin: 0;
@@ -135,118 +95,15 @@
       font-size: 0.9em;
       font-weight: 400;
     }
-    .audio-controls {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      background-color: #1e90ff;
-      padding: 2px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      width: 25%;
-      max-width: 80px;
-      margin-right: 5px;
-    }
-    .control-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .control-buttons .control-btn {
-      cursor: pointer;
-      color: #ffffff;
-      font-size: 0.7em;
-      margin: 0 1px;
-      transition: transform 0.1s ease;
-      min-width: 32px;
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      touch-action: manipulation;
-    }
-    .control-buttons .control-btn:hover {
-      transform: scale(1.1);
-    }
-    .control-buttons .play-pause-btn {
-      width: 14px;
-      height: 14px;
-      background-color: #ffffff;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #1e90ff;
-      font-size: 0.6em;
-    }
-    .volume-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 14px;
-      height: 14px;
-      cursor: pointer;
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      transition: transform 0.2s ease, background-color 0.2s ease;
-      margin-left: 2px;
-      touch-action: manipulation;
-    }
-    .volume-icon:hover {
-      transform: scale(1.15);
-      background-color: rgba(255, 255, 255, 0.3);
-    }
-    .volume-icon svg {
-      width: 10px;
-      height: 10px;
-      fill: #ffffff;
-    }
-    .waveform {
-      width: 35px;
-      height: 6px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 1px;
-      margin-left: 2px;
-    }
-    .waveform .bar {
-      width: 0.7px;
-      height: 100%;
-      background-color: #1e90ff;
-      border-radius: 2px;
-      animation: none;
-    }
-    .waveform.playing .bar {
-      animation: wave 1s infinite ease-in-out;
-    }
-    .waveform.playing .bar:nth-child(1) { animation-delay: 0s; }
-    .waveform.playing .bar:nth-child(2) { animation-delay: 0.1s; }
-    .waveform.playing .bar:nth-child(3) { animation-delay: 0.2s; }
-    .waveform.playing .bar:nth-child(4) { animation-delay: 0.3s; }
-    .waveform.playing .bar:nth-child(5) { animation-delay: 0.4s; }
-    .waveform.playing .bar:nth-child(6) { animation-delay: 0.5s; }
-    .waveform.playing .bar:nth-child(7) { animation-delay: 0.6s; }
-    .waveform.playing .bar:nth-child(8) { animation-delay: 0.7s; }
-    @keyframes wave {
-      0%, 100% { height: 20%; }
-      50% { height: 80%; }
-    }
     .nav-menu {
       background-color: #3a3a3a;
-      padding: 6px;
+      padding: 10px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 10px;
       position: fixed;
-      top: 60px;
+      top: 80px;
       width: 100%;
       max-width: 1200px;
       z-index: 1000;
@@ -254,7 +111,7 @@
       box-sizing: border-box;
     }
     .nav-item {
-      padding: 6px 10px;
+      padding: 8px 12px;
       background-color: #ff6f61;
       color: #ffffff;
       border-radius: 5px;
@@ -336,7 +193,7 @@
       display: block;
     }
     .tab-content {
-      padding: 15px;
+      padding: 20px;
       background-color: #3a3a3a;
       border-radius: 10px;
       margin: 10px;
@@ -347,14 +204,14 @@
     }
     .tab-content h3 {
       color: #ff6f61;
-      font-size: 1.2em;
-      margin: 15px 0 10px;
+      font-size: 1.5em;
+      margin: 0 0 20px;
       text-align: center;
     }
     .expand-btn {
       display: block;
-      margin: 15px auto;
-      padding: 8px 16px;
+      margin: 20px auto;
+      padding: 10px 20px;
       background-color: #ff6f61;
       color: #ffffff;
       border: none;
@@ -372,10 +229,10 @@
     }
     .expanded-message {
       display: none;
-      padding: 12px;
+      padding: 15px;
       background-color: #252525;
       border-radius: 10px;
-      margin: 15px 0;
+      margin: 20px 0;
       text-align: center;
       opacity: 0;
       transform: translateY(-10px);
@@ -388,8 +245,8 @@
     }
     .next-btn {
       display: inline-block;
-      margin-top: 8px;
-      padding: 6px 12px;
+      margin-top: 10px;
+      padding: 8px 16px;
       background-color: #ff6f61;
       color: #ffffff;
       border: none;
@@ -409,326 +266,126 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin: 15px 0;
+      gap: 15px;
+      margin: 20px 0;
     }
     .product-card {
       background-color: #252525;
       border-radius: 10px;
-      padding: 8px;
-      width: calc(50% - 10px);
-      max-width: 140px;
+      padding: 10px;
+      width: calc(50% - 15px);
+      max-width: 150px;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       box-sizing: border-box;
-      position: relative;
-    }
-    .product-card .image-wrapper {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
     }
     .product-card img {
       width: 120px;
       height: 120px;
       border-radius: 5px;
-      display: block;
-      transition: all 0.3s ease;
+      object-fit: cover;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .product-card.zoomed img {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 90vw;
-      max-height: 80vh;
-      width: auto;
-      height: auto;
-      z-index: 10000;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    .product-card img:hover {
+      transform: scale(1.05);
     }
     .product-card h4 {
       color: #ff6f61;
-      margin: 5px 0;
-      font-size: 0.9em;
+      margin: 10px 0 5px;
+      font-size: 1em;
     }
     .product-card p {
-      font-size: 0.7em;
+      font-size: 0.8em;
       color: #ccc;
       margin: 0;
       line-height: 1.4;
     }
-    .zoom-nav {
+    .zoom-overlay {
       display: none;
       position: fixed;
-      z-index: 10001;
-    }
-    .product-card.zoomed ~ .zoom-nav {
-      display: flex;
-      justify-content: space-between;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 90vw;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      touch-action: manipulation;
+    }
+    .zoom-overlay.active {
+      display: flex;
+    }
+    .zoom-image-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+    }
+    .zoom-image {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+    .zoom-nav {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      top: 50%;
+      transform: translateY(-50%);
     }
     .zoom-btn {
       background-color: #ff6f61;
       color: #ffffff;
-      padding: 8px 12px;
+      padding: 10px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 0.8em;
+      font-size: 1em;
       font-weight: 600;
       transition: background-color 0.3s ease;
       min-width: 40px;
       min-height: 40px;
       touch-action: manipulation;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .zoom-btn.previous {
-      left: 10px;
-    }
-    .zoom-btn.next {
-      right: 10px;
     }
     .zoom-btn:hover {
       background-color: #ffffff;
       color: #ff6f61;
     }
+    .zoom-btn.previous {
+      margin-left: 10px;
+    }
+    .zoom-btn.next {
+      margin-right: 10px;
+    }
     .visitor-counter {
       text-align: center;
-      padding: 12px;
+      padding: 15px;
       background-color: #252525;
       border: 1px solid #00ffcc;
       border-radius: 8px;
-      margin: 15px auto;
+      margin: 20px auto;
       max-width: 250px;
       font-family: 'Orbitron', sans-serif;
       color: #00cc99;
       box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
     }
     .visitor-counter span {
-      font-size: 1.1em;
+      font-size: 1.2em;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
       0% { opacity: 1; }
       50% { opacity: 0.7; }
       100% { opacity: 1; }
-    }
-    @media (min-width: 768px) {
-      .container {
-        padding-top: 150px;
-      }
-      .header {
-        height: 80px;
-        padding: 10px;
-      }
-      .title-container {
-        width: 75%;
-        padding-left: 10px;
-      }
-      .header h1 {
-        font-size: 2em;
-      }
-      .header p {
-        font-size: 1em;
-      }
-      .audio-controls {
-        flex-direction: column;
-        width: 100px;
-        padding: 5px;
-        margin-right: 10px;
-        max-width: none;
-        justify-content: center;
-        align-items: center;
-      }
-      .control-buttons {
-        margin-bottom: 3px;
-      }
-      .control-buttons .control-btn {
-        font-size: 0.8em;
-        margin: 0 2px;
-        min-width: 36px;
-        min-height: 36px;
-      }
-      .control-buttons .play-pause-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8em;
-      }
-      .volume-icon {
-        width: 20px;
-        height: 20px;
-        margin-left: 0;
-        margin-top: 3px;
-      }
-      .volume-icon svg {
-        width: 14px;
-        height: 14px;
-      }
-      .waveform {
-        width: 80%;
-        height: 10px;
-        margin-left: 0;
-        padding: 0 2px;
-      }
-      .waveform .bar {
-        width: 1.2px;
-      }
-      .nav-menu {
-        padding: 10px;
-        gap: 8px;
-        top: 80px;
-      }
-      .nav-item {
-        padding: 8px 12px;
-        font-size: 0.9em;
-      }
-      .product-card {
-        width: calc(20% - 15px);
-        max-width: 200px;
-      }
-      .product-card .image-wrapper {
-        width: 140px;
-        height: 140px;
-      }
-      .product-card img {
-        width: 140px;
-        height: 140px;
-      }
-      .product-card.zoomed img {
-        width: 400px;
-        height: 400px;
-      }
-      .product-card h4 {
-        font-size: 1em;
-      }
-      .product-card p {
-        font-size: 0.85em;
-      }
-      .visitor-counter {
-        max-width: 300px;
-        padding: 15px;
-      }
-    }
-    @media (max-width: 600px) {
-      .product-card {
-        width: 100%;
-        max-width: 140px;
-      }
-    }
-    @media (max-width: 768px) {
-      .container {
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-        min-height: 100vh;
-        padding-top: 100px;
-      }
-      .header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 5px;
-        height: 60px;
-      }
-      .title-container {
-        width: 70%;
-        padding-left: 5px;
-      }
-      .header h1 {
-        font-size: 1.6em;
-      }
-      .header p {
-        font-size: 0.75em;
-        line-height: 1.4;
-      }
-      .audio-controls {
-        width: 25%;
-        max-width: 80px;
-        padding: 2px;
-        margin-right: 5px;
-      }
-      .control-buttons .control-btn {
-        font-size: 0.7em;
-        margin: 0 1px;
-        min-width: 32px;
-        min-height: 32px;
-      }
-      .control-buttons .play-pause-btn {
-        width: 14px;
-        height: 14px;
-        font-size: 0.6em;
-      }
-      .volume-icon {
-        width: 14px;
-        height: 14px;
-        margin-left: 2px;
-        margin-top: 0;
-      }
-      .volume-icon svg {
-        width: 10px;
-        height: 10px;
-      }
-      .waveform {
-        width: 35px;
-        height: 6px;
-        padding: 0 1px;
-        margin-left: 2px;
-      }
-      .waveform .bar {
-        width: 0.7px;
-      }
-      .nav-menu {
-        padding: 6px;
-        gap: 5px;
-        top: 60px;
-      }
-      .nav-item {
-        padding: 5px 8px;
-        font-size: 0.75em;
-      }
-      .dropdown-content {
-        width: 100%;
-        min-width: 0;
-        left: 0;
-        background-color: #3a3a3a;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        z-index: 1002;
-        border-radius: 0 0 5px 5px;
-      }
-      .dropdown-content a {
-        font-size: 0.8em;
-        padding: 8px 12px;
-        text-align: center;
-      }
-      .tab-content {
-        padding: 12px;
-        margin: 8px;
-      }
-      .expand-btn {
-        padding: 6px 12px;
-        font-size: 0.9em;
-      }
-      .expanded-message {
-        padding: 10px;
-        font-size: 0.9em;
-      }
-      .next-btn {
-        padding: 5px 10px;
-        font-size: 0.8em;
-      }
-      .visitor-counter {
-        max-width: 200px;
-        padding: 10px;
-        font-size: 0.9em;
-      }
     }
     .megaphone-message {
       display: none;
@@ -738,7 +395,7 @@
       transform: translate(-50%, -50%);
       background-color: #ff6f61;
       color: #ffffff;
-      padding: 15px;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       z-index: 10000;
@@ -748,8 +405,8 @@
       max-width: 300px;
     }
     .megaphone-message button {
-      margin-top: 10px;
-      padding: 8px 16px;
+      margin-top: 15px;
+      padding: 10px 20px;
       background-color: #ffffff;
       color: #ff6f61;
       border: none;
@@ -760,135 +417,151 @@
       min-height: 44px;
       touch-action: manipulation;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @media (max-width: 768px) {
+      .container {
+        padding-top: 120px;
+        border-radius: 0;
+      }
+      .header {
+        padding: 8px;
+      }
+      .header h1 {
+        font-size: 1.6em;
+      }
+      .header p {
+        font-size: 0.8em;
+      }
+      .nav-menu {
+        top: 70px;
+        padding: 8px;
+        gap: 8px;
+      }
+      .nav-item {
+        padding: 6px 10px;
+        font-size: 0.8em;
+      }
+      .dropdown-content {
+        min-width: 140px;
+      }
+      .dropdown-content a {
+        padding: 8px 12px;
+        font-size: 0.8em;
+      }
+      .product-card {
+        width: calc(50% - 10px);
+        max-width: 140px;
+      }
+      .product-card img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    @media (max-width: 480px) {
+      .product-card {
+        width: 100%;
+        max-width: 160px;
+      }
+      .zoom-image-container {
+        width: 250px;
+        height: 250px;
+      }
+      .zoom-image {
+        width: 250px;
+        height: 250px;
+      }
     }
   </style>
 </head>
-<body onclick="handleFirstClick()">
+<body>
   <div class="container">
     <div class="header">
-      <div class="title-container">
-        <h1>Fábrica Vita Gula</h1>
-        <p>Sabor, Tradição e Qualidade Desde 2001</p>
-      </div>
-      <div class="audio-controls" role="region" aria-label="Controles de áudio">
-        <div class="control-buttons">
-          <span class="control-btn" id="prev-btn" onclick="playClickSound(); playPrevious()" onmouseover="playHoverSound()" aria-label="Tocar faixa anterior">⏮</span>
-          <span class="control-btn play-pause-btn" id="play-pause-btn" onclick="playClickSound(); togglePlayPause()" onmouseover="playHoverSound()" aria-label="Tocar ou pausar">▶</span>
-          <span class="control-btn" id="next-btn" onclick="playClickSound(); playNext()" onmouseover="playHoverSound()" aria-label="Tocar próxima faixa">⏭</span>
-        </div>
-        <div class="waveform" id="waveform">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-        <span class="volume-icon low" id="volume-icon" onclick="playClickSound(); changeVolume()" onmouseover="playHoverSound()" aria-label="Ajustar volume">
-          <svg class="volume-mute" viewBox="0 0 24 24" style="display: none;">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm11 0l3.5 3.5L14 15V9zm5.5 3l-2.5-2.5L19.5 7l2.5 2.5L19.5 12z"/>
-          </svg>
-          <svg class="volume-low" viewBox="0 0 24 24">
-            <path d="M3 9v6h4l5 5V4L7 9H3z"/>
-          </svg>
-          <svg class="volume-medium" viewBox="0 0 24 24" style="display: none;">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-          </svg>
-          <svg class="volume-high" viewBox="0 0 24 24" style="display: none;">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-          </svg>
-        </span>
-      </div>
+      <h1>Fábrica Vita Gula</h1>
+      <p>Sabor, Tradição e Qualidade Desde 2001</p>
     </div>
     <div class="nav-menu">
-      <a class="nav-item" href="https://gvitagula.github.io/site/" role="tab" onmouseover="playHoverSound()">Página Principal</a>
-      <a class="nav-item" href="https://gvitagula.github.io/site/quemsomos" role="tab" onmouseover="playHoverSound()">Quem Somos</a>
-      <div class="nav-item dropdown active" onclick="toggleDropdown(event, 'produtos')" onmouseover="playHoverSound()">
+      <a class="nav-item" href="https://gvitagula.github.io/site/">Página Principal</a>
+      <a class="nav-item" href="https://gvitagula.github.io/site/quemsomos">Quem Somos</a>
+      <div class="nav-item dropdown active" onclick="toggleDropdown(event, 'produtos')">
         <span class="dropdown-toggle">Produtos</span>
         <div class="dropdown-content">
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/paes/" role="menuitem" onmouseover="playHoverSound()">Pães</a>
+            <a href="https://gvitagula.github.io/paes/">Pães</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/paes/hamburguer/" role="menuitem" onmouseover="playHoverSound()">Pão de Hambúrguer</a>
-              <a href="https://gvitagula.github.io/paes/hotdog/" role="menuitem" onmouseover="playHoverSound()">Pão de Hot Dog</a>
-              <a href="https://gvitagula.github.io/paes/forma/" role="menuitem" onmouseover="playHoverSound()">Pão de Forma</a>
-              <a href="https://gvitagula.github.io/paes/leite/" role="menuitem" onmouseover="playHoverSound()">Pão de Leite</a>
+              <a href="https://gvitagula.github.io/paes/hamburguer/">Pão de Hambúrguer</a>
+              <a href="https://gvitagula.github.io/paes/hotdog/">Pão de Hot Dog</a>
+              <a href="https://gvitagula.github.io/paes/forma/">Pão de Forma</a>
+              <a href="https://gvitagula.github.io/paes/leite/">Pão de Leite</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/biscoitos/" role="menuitem" onmouseover="playHoverSound()">Biscoitos</a>
+            <a href="https://gvitagula.github.io/biscoitos/">Biscoitos</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/biscoitos/salgado/" role="menuitem" onmouseover="playHoverSound()">Biscoito Salgado</a>
-              <a href="https://gvitagula.github.io/biscoitos/doce/" role="menuitem" onmouseover="playHoverSound()">Biscoito Doce</a>
+              <a href="https://gvitagula.github.io/biscoitos/salgado/">Biscoito Salgado</a>
+              <a href="https://gvitagula.github.io/biscoitos/doce/">Biscoito Doce</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/bolos/" class="active" role="menuitem" onmouseover="playHoverSound()">Bolos</a>
+            <a href="https://gvitagula.github.io/bolos/" class="active">Bolos</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/bolos/chocolate/" role="menuitem" onmouseover="playHoverSound()">Bolo de Chocolate</a>
-              <a href="https://gvitagula.github.io/bolos/vanilla/" role="menuitem" onmouseover="playHoverSound()">Bolo de Baunilha</a>
+              <a href="https://gvitagula.github.io/bolos/chocolate/">Bolo de Chocolate</a>
+              <a href="https://gvitagula.github.io/bolos/vanilla/">Bolo de Baunilha</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/+produtos/" role="menuitem" onmouseover="playHoverSound()">+Produtos</a>
+            <a href="https://gvitagula.github.io/+produtos/">+Produtos</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/+produtos/sobremesas/" role="menuitem" onmouseover="playHoverSound()">Sobremesas</a>
-              <a href="https://gvitagula.github.io/+produtos/bebidas/" role="menuitem" onmouseover="playHoverSound()">Bebidas</a>
+              <a href="https://gvitagula.github.io/+produtos/sobremesas/">Sobremesas</a>
+              <a href="https://gvitagula.github.io/+produtos/bebidas/">Bebidas</a>
             </div>
           </div>
-          <a href="https://gvitagula.github.io/precos/" role="menuitem" onmouseover="playHoverSound()">Preços</a>
+          <a href="https://gvitagula.github.io/precos/">Preços</a>
         </div>
       </div>
-      <a class="nav-item" href="https://gvitagula.github.io/site/contatos" role="tab" onmouseover="playHoverSound()">Contatos</a>
-      <a class="nav-item" href="https://gvitagula.github.io/site/parceiros" role="tab" onmouseover="playHoverSound()">Parceiros</a>
-      <div class="nav-item dropdown" onclick="toggleDropdown(event, 'downloads')" onmouseover="playHoverSound()">
+      <a class="nav-item" href="https://gvitagula.github.io/site/contatos">Contatos</a>
+      <a class="nav-item" href="https://gvitagula.github.io/site/parceiros">Parceiros</a>
+      <div class="nav-item dropdown" onclick="toggleDropdown(event, 'downloads')">
         <span class="dropdown-toggle">Downloads</span>
         <div class="dropdown-content">
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/programas/" role="menuitem" onmouseover="playHoverSound()">Programas</a>
+            <a href="https://gvitagula.github.io/programas/">Programas</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/programas/desktop/" role="menuitem" onmouseover="playHoverSound()">Desktop</a>
-              <a href="https://gvitagula.github.io/programas/mobile/" role="menuitem" onmouseover="playHoverSound()">Mobile</a>
+              <a href="https://gvitagula.github.io/programas/desktop/">Desktop</a>
+              <a href="https://gvitagula.github.io/programas/mobile/">Mobile</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/imagens/" role="menuitem" onmouseover="playHoverSound()">Imagens</a>
+            <a href="https://gvitagula.github.io/imagens/">Imagens</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/imagens/paes/" role="menuitem" onmouseover="playHoverSound()">Pães</a>
-              <a href="https://gvitagula.github.io/imagens/produtos/" role="menuitem" onmouseover="playHoverSound()">Outros Produtos</a>
+              <a href="https://gvitagula.github.io/imagens/paes/">Pães</a>
+              <a href="https://gvitagula.github.io/imagens/produtos/">Outros Produtos</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/video/" role="menuitem" onmouseover="playHoverSound()">Vídeo</a>
+            <a href="https://gvitagula.github.io/video/">Vídeo</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/video/receitas/" role="menuitem" onmouseover="playHoverSound()">Receitas</a>
-              <a href="https://gvitagula.github.io/video/tutoriais/" role="menuitem" onmouseover="playHoverSound()">Tutoriais</a>
+              <a href="https://gvitagula.github.io/video/receitas/">Receitas</a>
+              <a href="https://gvitagula.github.io/video/tutoriais/">Tutoriais</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/mp3/" role="menuitem" onmouseover="playHoverSound()">Mp3</a>
+            <a href="https://gvitagula.github.io/mp3/">Mp3</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/mp3/musicas/" role="menuitem" onmouseover="playHoverSound()">Músicas</a>
-              <a href="https://gvitagula.github.io/mp3/efeitos/" role="menuitem" onmouseover="playHoverSound()">Efeitos</a>
+              <a href="https://gvitagula.github.io/mp3/musicas/">Músicas</a>
+              <a href="https://gvitagula.github.io/mp3/efeitos/">Efeitos</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/pdf/" role="menuitem" onmouseover="playHoverSound()">PDF</a>
+            <a href="https://gvitagula.github.io/pdf/">PDF</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/pdf/catalogos/" role="menuitem" onmouseover="playHoverSound()">Catálogos</a>
-              <a href="https://gvitagula.github.io/pdf/manuais/" role="menuitem" onmouseover="playHoverSound()">Manuais</a>
+              <a href="https://gvitagula.github.io/pdf/catalogos/">Catálogos</a>
+              <a href="https://gvitagula.github.io/pdf/manuais/">Manuais</a>
             </div>
           </div>
           <div class="submenu-item">
-            <a href="https://gvitagula.github.io/outros/" role="menuitem" onmouseover="playHoverSound()">Outros</a>
+            <a href="https://gvitagula.github.io/outros/">Outros</a>
             <div class="submenu">
-              <a href="https://gvitagula.github.io/outros/documentos/" role="menuitem" onmouseover="playHoverSound()">Documentos</a>
-              <a href="https://gvitagula.github.io/outros/outros/" role="menuitem" onmouseover="playHoverSound()">Outros Arquivos</a>
+              <a href="https://gvitagula.github.io/outros/documentos/">Documentos</a>
+              <a href="https://gvitagula.github.io/outros/outros/">Outros Arquivos</a>
             </div>
           </div>
         </div>
@@ -898,59 +571,45 @@
       <h3>Nossos Bolos</h3>
       <button class="expand-btn" onclick="toggleExpand()">Exibir</button>
       <div class="expanded-message" id="expanded-message">
-        <p>Na Fábrica Vita Gula, nossos bolos são preparados com ingredientes frescos e receitas que equilibram tradição e inovação. Cada bolo é assado com cuidado para garantir textura macia e sabor inesquecível, perfeito para celebrações ou momentos especiais.</p><p>Oferecemos opções personalizadas e sob encomenda, incluindo bolos sem glúten e veganos.</p>
+        <p>Na Fábrica Vita Gula, nossos bolos são preparados com ingredientes frescos e receitas que equilibram tradição e inovação. Cada bolo é assado com cuidado para garantir textura macia e sabor inesquecível, perfeito para celebrações ou momentos especiais.</p>
+        <p>Oferecemos opções personalizadas e sob encomenda, incluindo bolos sem glúten e veganos.</p>
         <button class="next-btn" id="next-btn-message" onclick="nextMessage()">Próxima Mensagem</button>
       </div>
       <div class="product-gallery">
-        <div class="product-card">
-          <div class="image-wrapper">
-            <img src="https://i.ibb.co/KpMGd1SH/27-Bolinho.jpg" alt="Bolinho" onerror="this.onerror=null; this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'; console.error('Failed to load Bolinho image');">
-          </div>
+        <div class="product-card" data-index="0">
+          <img src="https://i.ibb.co/KpMGd1SH/27-Bolinho.jpg" alt="Bolinho" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolinho</h4>
           <p>Macio, ideal para lanches.</p>
         </div>
-        <div class="product-card">
-          <div class="image-wrapper">
-            <img src="https://i.ibb.co/WWrnb5TL/28-Bolo-Fofo.jpg" alt="Bolo Fofo" onerror="this.onerror=null; this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'; console.error('Failed to load Bolo Fofo image');">
-          </div>
+        <div class="product-card" data-index="1">
+          <img src="https://i.ibb.co/WWrnb5TL/28-Bolo-Fofo.jpg" alt="Bolo Fofo" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolo Fofo</h4>
           <p>Leve, perfeito com café.</p>
         </div>
-        <div class="product-card">
-          <div class="image-wrapper">
-            <img src="https://i.ibb.co/mrjDfp4P/29-Bolo-Ingles.jpg" alt="Bolo Inglês" onerror="this.onerror=null; this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'; console.error('Failed to load Bolo Inglês image');">
-          </div>
+        <div class="product-card" data-index="2">
+          <img src="https://i.ibb.co/mrjDfp4P/29-Bolo-Ingles.jpg" alt="Bolo Inglês" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolo Inglês</h4>
           <p>Frutas secas, para ocasiões.</p>
         </div>
-        <div class="product-card">
-          <div class="image-wrapper">
-            <img src="https://i.ibb.co/yF6Cbd0r/30-Pizza.jpg" alt="Pizza" onerror="this.onerror=null; this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'; console.error('Failed to load Pizza image');">
-          </div>
+        <div class="product-card" data-index="3">
+          <img src="https://i.ibb.co/yF6Cbd0r/30-Pizza.jpg" alt="Pizza" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Pizza</h4>
           <p>Única, ideal para eventos.</p>
         </div>
-      </div>
-      <div class="zoom-nav">
-        <button class="zoom-btn previous" onclick="navigateZoom('previous')" onmouseover="playHoverSound()" aria-label="Imagem anterior" tabindex="0">Anterior</button>
-        <button class="zoom-btn next" onclick="navigateZoom('next')" onmouseover="playHoverSound()" aria-label="Próxima imagem" tabindex="0">Próximo</button>
       </div>
       <div class="visitor-counter">Visitas: <span id="visit-count">1000</span></div>
     </div>
   </div>
 
-  <audio id="background-audio" preload="auto">
-    <source id="audio-source" src="https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/musica1.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
-  <audio id="hover-sound">
-    <source src="https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/botao1.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
-  <audio id="click-sound">
-    <source src="https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/botao2.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
+  <div class="zoom-overlay" id="zoom-overlay">
+    <div class="zoom-image-container">
+      <img class="zoom-image" id="zoom-image" src="" alt="Imagem Ampliada">
+      <div class="zoom-nav">
+        <button class="zoom-btn previous" onclick="navigateZoom('previous')">◄</button>
+        <button class="zoom-btn next" onclick="navigateZoom('next')">►</button>
+      </div>
+    </div>
+  </div>
 
   <div id="megaphone-message" class="megaphone-message">
     🎉 Temos boas ofertas para você! 🎉
@@ -958,169 +617,12 @@
   </div>
 
   <script>
-    let volumeLevel = 0;
-    const audio = document.getElementById('background-audio');
-    const audioSource = document.getElementById('audio-source');
-    const waveform = document.getElementById('waveform');
-    const hoverSound = document.getElementById('hover-sound');
-    const clickSound = document.getElementById('click-sound');
-    let isPlaying = false;
-    let hasClicked = false;
-    const tracks = [
-      "https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/musica1.mp3",
-      "https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/musica2.mp3",
-      "https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/musica3.mp3"
-    ];
-    let currentTrackIndex = 0;
-
-    function handleFirstClick() {
-      if (!hasClicked) {
-        togglePlayPause();
-        hasClicked = true;
-      }
-    }
-
-    function playHoverSound() {
-      if (!hoverSound.paused) hoverSound.pause();
-      hoverSound.currentTime = 0;
-      hoverSound.play().catch(error => console.error("Hover sound playback failed:", error));
-    }
-
-    function playClickSound() {
-      if (!clickSound.paused) clickSound.pause();
-      clickSound.currentTime = 0;
-      clickSound.play().catch(error => console.error("Click sound playback failed:", error));
-    }
-
-    function changeVolume() {
-      volumeLevel = (volumeLevel + 1) % 4;
-      const volumeIcon = document.getElementById('volume-icon');
-      const muteIcon = volumeIcon.querySelector('.volume-mute');
-      const lowIcon = volumeIcon.querySelector('.volume-low');
-      const mediumIcon = volumeIcon.querySelector('.volume-medium');
-      const highIcon = volumeIcon.querySelector('.volume-high');
-      volumeIcon.classList.remove('mute', 'low', 'medium', 'high');
-      muteIcon.style.display = 'none';
-      lowIcon.style.display = 'none';
-      mediumIcon.style.display = 'none';
-      highIcon.style.display = 'none';
-      let newVolume;
-      if (volumeLevel === 0) {
-        volumeIcon.classList.add('low');
-        lowIcon.style.display = 'block';
-        newVolume = 0.3;
-      } else if (volumeLevel === 1) {
-        volumeIcon.classList.add('medium');
-        mediumIcon.style.display = 'block';
-        newVolume = 0.6;
-      } else if (volumeLevel === 2) {
-        volumeIcon.classList.add('high');
-        highIcon.style.display = 'block';
-        newVolume = 1.0;
-      } else {
-        volumeIcon.classList.add('mute');
-        muteIcon.style.display = 'block';
-        newVolume = 0.0;
-      }
-      audio.volume = newVolume;
-      hoverSound.volume = newVolume;
-      clickSound.volume = newVolume;
-    }
-
-    function togglePlayPause() {
-      const playPauseBtn = document.getElementById('play-pause-btn');
-      if (isPlaying) {
-        audio.pause();
-        playPauseBtn.innerHTML = '▶';
-        waveform.classList.remove('playing');
-        isPlaying = false;
-      } else {
-        if (!audio.src || audio.src !== tracks[currentTrackIndex]) {
-          audio.src = tracks[currentTrackIndex];
-          audio.load();
-        }
-        audio.play().then(() => {
-          playPauseBtn.innerHTML = '⏸';
-          waveform.classList.add('playing');
-          isPlaying = true;
-        }).catch(error => {
-          console.error("Audio playback failed:", error);
-          currentTrackIndex = 0;
-          audio.src = tracks[0];
-          audio.load();
-          if (isPlaying) audio.play();
-        });
-      }
-    }
-
-    async function playTrack(index) {
-      return new Promise((resolve, reject) => {
-        audio.src = tracks[index];
-        audio.load();
-        audio.oncanplaythrough = () => resolve(true);
-        audio.onerror = () => reject(false);
-      });
-    }
-
-    async function playPrevious() {
-      const newIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-      try {
-        await playTrack(newIndex);
-        if (isPlaying) {
-          await audio.play();
-          currentTrackIndex = newIndex;
-          waveform.classList.add('playing');
-        } else {
-          currentTrackIndex = newIndex;
-        }
-      } catch (error) {
-        console.error("Failed to load previous track:", error);
-      }
-    }
-
-    async function playNext() {
-      const newIndex = (currentTrackIndex + 1) % tracks.length;
-      try {
-        await playTrack(newIndex);
-        if (isPlaying) {
-          await audio.play();
-          currentTrackIndex = newIndex;
-          waveform.classList.add('playing');
-        } else {
-          currentTrackIndex = newIndex;
-        }
-      } catch (error) {
-        console.error("Failed to load next track:", error);
-        currentTrackIndex = 0;
-        await playTrack(0);
-        if (isPlaying) audio.play();
-      }
-    }
-
-    audio.addEventListener('ended', () => {
-      playNext();
-    });
-
-    audio.volume = 0.3;
-    hoverSound.volume = 0.3;
-    clickSound.volume = 0.3;
-    audio.src = tracks[currentTrackIndex];
-    audio.load();
-
-    audio.addEventListener('error', (e) => {
-      console.error("Audio load error:", e);
-      currentTrackIndex = 0;
-      audio.src = tracks[0];
-      audio.load();
-    });
-
-    audio.addEventListener('loadeddata', () => {
-      console.log("Audio loaded successfully: " + tracks[currentTrackIndex]);
-    });
-
-    audio.addEventListener('canplaythrough', () => {
-      console.log("Audio can play through: " + tracks[currentTrackIndex]);
-    });
+    let currentZoomIndex = -1;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const productCards = document.querySelectorAll('.product-card');
+    const zoomOverlay = document.getElementById('zoom-overlay');
+    const zoomImage = document.getElementById('zoom-image');
 
     function toggleDropdown(event, tabName) {
       event.preventDefault();
@@ -1129,16 +631,12 @@
       const isOpen = dropdown.classList.contains('open');
       document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
       if (!isOpen) dropdown.classList.add('open');
-      playClickSound();
     }
 
     document.addEventListener('click', (event) => {
-      const dropdowns = document.querySelectorAll('.dropdown');
-      let isInsideDropdown = false;
-      dropdowns.forEach(dropdown => {
-        if (dropdown.contains(event.target)) isInsideDropdown = true;
-      });
-      if (!isInsideDropdown) dropdowns.forEach(dropdown => dropdown.classList.remove('open'));
+      if (!event.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      }
     });
 
     let messageIndex = 0;
@@ -1160,7 +658,6 @@
         nextBtn.style.display = 'none';
         expandBtn.textContent = 'Exibir';
       }
-      playClickSound();
     }
 
     function nextMessage() {
@@ -1169,74 +666,64 @@
       const nextBtn = document.getElementById('next-btn-message');
       message.innerHTML = messages[messageIndex];
       nextBtn.style.display = messageIndex < messages.length - 1 ? 'inline-block' : 'none';
-      playClickSound();
     }
 
-    const productCards = document.querySelectorAll('.product-card');
-    let currentZoomIndex = -1;
+    function openZoom(index) {
+      currentZoomIndex = index;
+      const imgSrc = productCards[index].querySelector('img').src;
+      zoomImage.src = imgSrc;
+      zoomOverlay.classList.add('active');
+      zoomImage.style.transform = 'translate(-50%, -50%) scale(1)';
+    }
+
+    function closeZoom() {
+      zoomOverlay.classList.remove('active');
+      currentZoomIndex = -1;
+    }
 
     function navigateZoom(direction) {
       if (currentZoomIndex === -1) return;
-      productCards.forEach(card => card.classList.remove('zoomed'));
+      let newIndex;
       if (direction === 'next') {
-        currentZoomIndex = (currentZoomIndex + 1) % productCards.length;
-      } else if (direction === 'previous') {
-        currentZoomIndex = (currentZoomIndex - 1 + productCards.length) % productCards.length;
+        newIndex = (currentZoomIndex + 1) % productCards.length;
+      } else {
+        newIndex = (currentZoomIndex - 1 + productCards.length) % productCards.length;
       }
-      productCards[currentZoomIndex].classList.add('zoomed');
-      playClickSound();
+      zoomImage.style.transform = direction === 'next' ? 'translate(-50%, -50%) translateX(-100%)' : 'translate(-50%, -50%) translateX(100%)';
+      setTimeout(() => {
+        openZoom(newIndex);
+      }, 300);
     }
 
     productCards.forEach((card, index) => {
       const img = card.querySelector('img');
-      const toggleZoom = (e) => {
-        e.preventDefault();
-        productCards.forEach(otherCard => otherCard.classList.remove('zoomed'));
-        if (!card.classList.contains('zoomed')) {
-          card.classList.add('zoomed');
-          currentZoomIndex = index;
-        } else {
-          card.classList.remove('zoomed');
-          currentZoomIndex = -1;
-        }
-      };
-      img.addEventListener('click', toggleZoom);
-      img.addEventListener('touchstart', toggleZoom, { passive: true });
+      img.addEventListener('click', () => openZoom(index));
     });
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.product-card img') && !e.target.closest('.zoom-btn')) {
-        productCards.forEach(card => card.classList.remove('zoomed'));
-        currentZoomIndex = -1;
-      }
+    zoomOverlay.addEventListener('click', (e) => {
+      if (e.target === zoomOverlay) closeZoom();
     });
 
-    document.addEventListener('touchstart', (e) => {
-      if (!e.target.closest('.product-card img') && !e.target.closest('.zoom-btn')) {
-        productCards.forEach(card => card.classList.remove('zoomed'));
-        currentZoomIndex = -1;
-      }
-    });
+    zoomOverlay.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
 
-    document.addEventListener('keydown', (e) => {
-      if (currentZoomIndex === -1) return;
-      if (e.keyCode === 37) { // Left arrow
+    zoomOverlay.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (swipeDistance > 50) {
         navigateZoom('previous');
-      } else if (e.keyCode === 39) { // Right arrow
+      } else if (swipeDistance < -50) {
         navigateZoom('next');
       }
-    });
-
-    function activateMegaphone() {
-      audio.volume = 1.0;
-      const megaphoneMessage = document.getElementById('megaphone-message');
-      megaphoneMessage.style.display = 'block';
-      setTimeout(hideMegaphoneMessage, 5000);
     }
 
     function hideMegaphoneMessage() {
-      const megaphoneMessage = document.getElementById('megaphone-message');
-      megaphoneMessage.style.display = 'none';
+      document.getElementById('megaphone-message').style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1244,9 +731,9 @@
       visitCount++;
       localStorage.setItem('visitCount', visitCount);
       document.getElementById('visit-count').textContent = visitCount;
-      activateMegaphone();
+      document.getElementById('megaphone-message').style.display = 'block';
+      setTimeout(hideMegaphoneMessage, 5000);
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94025697ea2e6f85',t:'MTc0NzMwODk5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
