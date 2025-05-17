@@ -74,7 +74,7 @@
     .header {
       background-color: #1e90ff;
       color: #ffffff;
-      padding: 5px;
+      padding: 20px;
       border-bottom: 5px solid #ff6f61;
       position: fixed;
       top: 0;
@@ -85,95 +85,88 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      height: 60px;
+      height: 100px;
       z-index: 1001;
     }
     .title-container {
-      width: 70%;
-      padding-left: 5px;
+      margin-left: 10px;
+      flex: 1;
     }
     .header h1 {
-      margin: 0;
-      font-size: 1.8em;
+      margin: 0 0 5px 0;
+      font-size: 2em;
       font-weight: 600;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     .header p {
       margin: 0;
-      font-size: 0.9em;
+      font-size: 1em;
       font-weight: 400;
     }
     .audio-controls {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
       background-color: #1e90ff;
-      padding: 2px;
-      border-radius: 10px;
+      padding: 5px 8px;
+      border-radius: 15px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      width: 25%;
-      max-width: 80px;
-      margin-right: 5px;
+      width: 120px;
+      margin-right: 10px;
     }
     .control-buttons {
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      margin-bottom: 6px;
     }
     .control-buttons .control-btn {
       cursor: pointer;
       color: #ffffff;
-      font-size: 0.7em;
-      margin: 0 1px;
+      font-size: 1em;
+      margin: 0 6px;
       transition: transform 0.1s ease;
-      min-width: 32px;
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      touch-action: manipulation;
     }
     .control-buttons .control-btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
     .control-buttons .play-pause-btn {
-      width: 14px;
-      height: 14px;
+      width: 25px;
+      height: 25px;
       background-color: #ffffff;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #1e90ff;
-      font-size: 0.6em;
+      font-size: 1em;
     }
     .volume-icon {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 14px;
-      height: 14px;
+      width: 24px;
+      height: 24px;
       cursor: pointer;
       color: #ffffff;
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       transition: transform 0.2s ease, background-color 0.2s ease;
-      margin-left: 2px;
-      touch-action: manipulation;
+      margin-top: 8px;
     }
     .volume-icon:hover {
       transform: scale(1.15);
       background-color: rgba(255, 255, 255, 0.3);
     }
     .volume-icon svg {
-      width: 10px;
-      height: 10px;
+      width: 18px;
+      height: 18px;
       fill: #ffffff;
     }
     .waveform {
-      width: 35px;
-      height: 6px;
+      width: 100%;
+      height: 12px;
       background-color: #ffffff;
       border-radius: 5px;
       position: relative;
@@ -181,11 +174,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 1px;
-      margin-left: 2px;
+      padding: 0 4px;
     }
     .waveform .bar {
-      width: 0.7px;
+      width: 2px;
       height: 100%;
       background-color: #1e90ff;
       border-radius: 2px;
@@ -208,13 +200,13 @@
     }
     .nav-menu {
       background-color: #3a3a3a;
-      padding: 6px;
+      padding: 10px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
       position: fixed;
-      top: 60px;
+      top: 100px;
       width: 100%;
       max-width: 1200px;
       z-index: 1000;
@@ -222,7 +214,7 @@
       box-sizing: border-box;
     }
     .nav-item {
-      padding: 6px 10px;
+      padding: 8px 12px;
       background-color: #ff6f61;
       color: #ffffff;
       border-radius: 5px;
@@ -231,9 +223,6 @@
       transition: background-color 0.3s ease;
       text-decoration: none;
       font-size: 0.9em;
-      min-width: 44px;
-      text-align: center;
-      touch-action: manipulation;
     }
     .nav-item:hover {
       background-color: #ffffff;
@@ -284,27 +273,17 @@
       text-decoration: none;
       transition: background-color 0.3s ease;
       font-size: 0.9em;
-      touch-action: manipulation;
     }
     .dropdown-content a:hover {
       background-color: #ff6f61;
       color: #ffffff;
     }
-    .dropdown-content .submenu {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
-      background-color: #3a3a3a;
-      min-width: 150px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-      border-radius: 5px;
-    }
-    .dropdown-content .submenu-item:hover .submenu {
-      display: block;
+    .dropdown-content a.active {
+      background-color: #ff6f61;
+      color: #ffffff;
     }
     .tab-content {
-      padding: 15px;
+      padding: 20px;
       background-color: #3a3a3a;
       border-radius: 10px;
       margin: 10px;
@@ -316,12 +295,65 @@
     .tab-content h3 {
       color: #ff6f61;
       font-size: 1.2em;
-      margin: 15px 0 10px;
+      margin: 20px 0 10px;
       text-align: center;
     }
     .expand-btn {
       display: block;
-      margin: 15px auto;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #ff6f61;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .expand-btn:hover {
+      background-color: #ffffff;
+      color: #ff6f61;
+      transform: scale(1.05);
+    }
+    .expand-btn:active {
+      transform: scale(0.95);
+    }
+    .expanded-message {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 15px;
+      background: rgba(30, 144, 255, 0.7);
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: center;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+      color: #ffffff;
+    }
+    .expanded-message.show {
+      max-height: 500px;
+      padding: 15px;
+      opacity: 1;
+    }
+    .expanded-message a {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 8px 16px;
+      background-color: #ff6f61;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .expanded-message a:hover {
+      background-color: #ffffff;
+      color: #ff6f61;
+    }
+    .next-btn {
+      display: inline-block;
+      margin-top: 10px;
       padding: 8px 16px;
       background-color: #ff6f61;
       color: #ffffff;
@@ -330,44 +362,6 @@
       cursor: pointer;
       font-weight: 600;
       transition: background-color 0.3s ease;
-      min-width: 44px;
-      min-height: 44px;
-      touch-action: manipulation;
-    }
-    .expand-btn:hover {
-      background-color: #ffffff;
-      color: #ff6f61;
-    }
-    .expanded-message {
-      display: none;
-      padding: 12px;
-      background-color: #252525;
-      border-radius: 10px;
-      margin: 15px 0;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .expanded-message.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .next-btn {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 6px 12px;
-      background-color: #ff6f61;
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      min-width: 44px;
-      min-height: 44px;
-      touch-action: manipulation;
     }
     .next-btn:hover {
       background-color: #ffffff;
@@ -377,13 +371,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin: 15px 0;
+      gap: 15px;
+      margin: 20px 0;
     }
     .product-card {
       background-color: #252525;
       border-radius: 10px;
-      padding: 8px;
+      padding: 10px;
       width: calc(50% - 10px);
       max-width: 140px;
       text-align: center;
@@ -394,12 +388,10 @@
       width: 120px;
       height: 120px;
       border-radius: 5px;
-      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      transition: all 0.3s ease;
       cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .product-card img:hover {
-      transform: scale(1.05);
     }
     .product-card h4 {
       color: #ff6f61;
@@ -407,10 +399,9 @@
       font-size: 0.9em;
     }
     .product-card p {
-      font-size: 0.7em;
+      font-size: 0.75em;
       color: #ccc;
       margin: 0;
-      line-height: 1.4;
     }
     .zoom-overlay {
       display: none;
@@ -419,79 +410,81 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 10000;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10010;
       justify-content: center;
       align-items: center;
-      touch-action: manipulation;
     }
     .zoom-overlay.active {
       display: flex;
     }
     .zoom-image-container {
       position: relative;
-      width: 250px;
-      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
     }
     .zoom-image {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
+      width: 370px;
+      max-height: 90vh;
+      object-fit: contain;
       border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease-in-out;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      transition: transform 0.3s ease;
     }
     .zoom-nav {
       position: absolute;
-      width: 310px; /* Aumentado para acomodar setas mais externas */
+      top: 50%;
+      width: 400px;
+      transform: translate(-50%, -50%);
+      left: 50%;
       display: flex;
       justify-content: space-between;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      align-items: center;
+      z-index: 10011;
     }
     .zoom-btn {
-      background-color: #ff6f61;
+      background: rgba(255, 111, 97, 0.7);
       color: #ffffff;
-      padding: 5px;
       border: none;
-      border-radius: 5px;
+      padding: 10px;
+      font-size: 24px;
       cursor: pointer;
-      font-size: 0.8em;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      min-width: 30px;
-      min-height: 30px;
-      touch-action: manipulation;
+      border-radius: 5px;
+      transition: background 0.3s ease, outline 0.2s ease;
+      min-width: 40px;
+      text-align: center;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .zoom-btn:hover {
-      background-color: #ffffff;
-      color: #ff6f61;
+      background: rgba(255, 111, 97, 0.9);
     }
-    .zoom-btn.previous {
-      margin-left: 20px; /* Mais afastado da imagem */
-    }
-    .zoom-btn.next {
-      margin-right: 20px; /* Mais afastado da imagem */
+    .zoom-btn:focus {
+      outline: 3px solid #ffffff;
+      outline-offset: 2px;
     }
     .visitor-counter {
       text-align: center;
-      padding: 12px;
+      padding: 15px;
       background-color: #252525;
       border: 1px solid #00ffcc;
       border-radius: 8px;
-      margin: 15px auto;
-      max-width: 250px;
+      margin: 20px auto;
+      max-width: 300px;
       font-family: 'Orbitron', sans-serif;
       color: #00cc99;
       box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
     }
     .visitor-counter span {
-      font-size: 1.1em;
+      font-size: 1.2em;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
@@ -499,122 +492,20 @@
       50% { opacity: 0.7; }
       100% { opacity: 1; }
     }
-    .megaphone-message {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ff6f61;
-      color: #ffffff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      z-index: 10000;
-      text-align: center;
-      font-size: 1em;
-      width: 90%;
-      max-width: 300px;
-    }
-    .megaphone-message button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #ffffff;
-      color: #ff6f61;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      min-width: 44px;
-      min-height: 44px;
-      touch-action: manipulation;
-    }
-    @media (min-width: 768px) {
-      .container {
-        padding-top: 150px;
-      }
-      .header {
-        height: 80px;
-        padding: 10px;
-      }
-      .title-container {
-        width: 75%;
-        padding-left: 10px;
-      }
-      .header h1 {
-        font-size: 2em;
-      }
-      .header p {
-        font-size: 1em;
-      }
-      .audio-controls {
-        flex-direction: column;
-        width: 100px;
-        padding: 5px;
-        margin-right: 10px;
-        max-width: none;
-        justify-content: center;
-        align-items: center;
-      }
-      .control-buttons {
-        margin-bottom: 3px;
-      }
-      .control-buttons .control-btn {
-        font-size: 0.8em;
-        margin: 0 2px;
-        min-width: 36px;
-        min-height: 36px;
-      }
-      .control-buttons .play-pause-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8em;
-      }
-      .volume-icon {
-        width: 20px;
-        height: 20px;
-        margin-left: 0;
-        margin-top: 3px;
-      }
-      .volume-icon svg {
-        width: 14px;
-        height: 14px;
-      }
-      .waveform {
-        width: 80%;
-        height: 10px;
-        margin-left: 0;
-        padding: 0 2px;
-      }
-      .waveform .bar {
-        width: 1.2px;
-      }
-      .nav-menu {
-        padding: 10px;
-        gap: 8px;
-        top: 80px;
-      }
-      .nav-item {
-        padding: 8px 12px;
-        font-size: 0.9em;
-      }
+    @media (max-width: 1024px) {
       .product-card {
-        width: calc(20% - 15px);
-        max-width: 200px;
+        width: calc(33.33% - 10px);
+        max-width: 160px;
       }
       .product-card img {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
-      .visitor-counter {
-        max-width: 300px;
-        padding: 15px;
+      .zoom-image {
+        width: 370px;
       }
-    }
-    @media (max-width: 600px) {
-      .product-card {
-        width: 100%;
-        max-width: 140px;
+      .zoom-nav {
+        width: 400px;
       }
     }
     @media (max-width: 768px) {
@@ -623,69 +514,72 @@
         margin: 0;
         border-radius: 0;
         min-height: 100vh;
-        padding-top: 100px;
+        padding-top: 130px;
       }
       .header {
+        padding: 10px;
+        height: 80px;
         flex-direction: row;
         justify-content: space-between;
-        padding: 5px;
-        height: 60px;
+        align-items: center;
       }
       .title-container {
-        width: 70%;
-        padding-left: 5px;
+        margin-left: 10px;
+        text-align: left;
+        flex: 1;
       }
       .header h1 {
-        font-size: 1.6em;
+        font-size: 1.5em;
       }
       .header p {
-        font-size: 0.75em;
-        line-height: 1.4;
+        font-size: 0.7em;
       }
       .audio-controls {
-        width: 25%;
-        max-width: 80px;
-        padding: 2px;
-        margin-right: 5px;
+        width: 80px;
+        padding: 4px 6px;
+        margin-right: 10px;
+      }
+      .control-buttons {
+        margin-bottom: 4px;
       }
       .control-buttons .control-btn {
-        font-size: 0.7em;
-        margin: 0 1px;
-        min-width: 32px;
-        min-height: 32px;
+        font-size: 0.8em;
+        margin: 0 3px;
       }
       .control-buttons .play-pause-btn {
-        width: 14px;
-        height: 14px;
-        font-size: 0.6em;
+        width: 18px;
+        height: 18px;
+        font-size: 0.8em;
       }
       .volume-icon {
-        width: 14px;
-        height: 14px;
-        margin-left: 2px;
-        margin-top: 0;
+        width: 18px;
+        height: 18px;
+        margin-top: 4px;
       }
       .volume-icon svg {
-        width: 10px;
-        height: 10px;
+        width: 14px;
+        height: 14px;
       }
       .waveform {
-        width: 35px;
-        height: 6px;
-        padding: 0 1px;
-        margin-left: 2px;
+        height: 8px;
+        padding: 0 3px;
       }
       .waveform .bar {
-        width: 0.7px;
+        width: 1px;
       }
       .nav-menu {
-        padding: 6px;
-        gap: 5px;
-        top: 60px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px;
+        gap: 6px;
+        top: 80px;
       }
       .nav-item {
-        padding: 5px 8px;
-        font-size: 0.75em;
+        padding: 6px 10px;
+        font-size: 0.8em;
+        flex: 1 1 auto;
+        text-align: center;
       }
       .dropdown-content {
         width: 100%;
@@ -701,42 +595,55 @@
         padding: 8px 12px;
         text-align: center;
       }
-      .tab-content {
-        padding: 12px;
-        margin: 8px;
-      }
-      .expand-btn {
-        padding: 6px 12px;
-        font-size: 0.9em;
-      }
-      .expanded-message {
-        padding: 10px;
-        font-size: 0.9em;
-      }
-      .next-btn {
-        padding: 5px 10px;
-        font-size: 0.8em;
-      }
-      .visitor-counter {
-        max-width: 200px;
-        padding: 10px;
-        font-size: 0.9em;
+      .zoom-image {
+        width: 370px;
       }
       .zoom-nav {
-        width: 290px; /* Ajustado para telas menores */
+        width: 400px;
+      }
+    }
+    @media (max-width: 480px) {
+      .product-card {
+        width: calc(50% - 7.5px);
+        max-width: 120px;
+      }
+      .product-card img {
+        width: 100px;
+        height: 100px;
+      }
+      .zoom-image {
+        width: 75vw;
+        max-height: 75vh;
+      }
+      .zoom-nav {
+        width: calc(75vw + 30px);
       }
       .zoom-btn {
-        min-width: 28px;
-        min-height: 28px;
-        font-size: 0.7em;
-        padding: 4px;
+        padding: 8px;
+        font-size: 20px;
+        min-width: 30px;
+        height: 30px;
       }
-      .zoom-btn.previous {
-        margin-left: 15px;
-      }
-      .zoom-btn.next {
-        margin-right: 15px;
-      }
+    }
+    .megaphone-message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ff6f61;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      text-align: center;
+      font-size: 1.2em;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -779,135 +686,78 @@
         </span>
       </div>
     </div>
-    <div class="nav-menu">
-      <a class="nav-item" href="https://gvitagula.github.io/site/" role="tab" onmouseover="playHoverSound()">Página Principal</a>
-      <a class="nav-item" href="https://gvitagula.github.io/site/quemsomos" role="tab" onmouseover="playHoverSound()">Quem Somos</a>
-      <div class="nav-item dropdown active" onclick="toggleDropdown(event, 'produtos')" onmouseover="playHoverSound()">
-        <span class="dropdown-toggle">Produtos</span>
+    <div class="nav-menu" role="navigation" aria-label="Menu principal">
+      <a class="nav-item" href="https://gvitagula.github.io/site/" onclick="playClickSound()" onmouseover="playHoverSound()" role="tab" aria-selected="false">Página Principal</a>
+      <a class="nav-item" href="https://gvitagula.github.io/quemsomos/" onclick="playClickSound()" onmouseover="playHoverSound()" role="tab" aria-selected="false">Quem Somos</a>
+      <div class="nav-item dropdown" role="tab" aria-selected="false">
+        <span class="dropdown-toggle" onclick="playClickSound(); toggleDropdown(event, 'produtos')" onmouseover="playHoverSound()">Produtos</span>
         <div class="dropdown-content">
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/paes/" role="menuitem" onmouseover="playHoverSound()">Pães</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/paes/hamburguer/" role="menuitem" onmouseover="playHoverSound()">Pão de Hambúrguer</a>
-              <a href="https://gvitagula.github.io/paes/hotdog/" role="menuitem" onmouseover="playHoverSound()">Pão de Hot Dog</a>
-              <a href="https://gvitagula.github.io/paes/forma/" role="menuitem" onmouseover="playHoverSound()">Pão de Forma</a>
-              <a href="https://gvitagula.github.io/paes/leite/" role="menuitem" onmouseover="playHoverSound()">Pão de Leite</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/biscoitos/" role="menuitem" onmouseover="playHoverSound()">Biscoitos</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/biscoitos/salgado/" role="menuitem" onmouseover="playHoverSound()">Biscoito Salgado</a>
-              <a href="https://gvitagula.github.io/biscoitos/doce/" role="menuitem" onmouseover="playHoverSound()">Biscoito Doce</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/bolos/" class="active" role="menuitem" onmouseover="playHoverSound()">Bolos</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/bolos/chocolate/" role="menuitem" onmouseover="playHoverSound()">Bolo de Chocolate</a>
-              <a href="https://gvitagula.github.io/bolos/vanilla/" role="menuitem" onmouseover="playHoverSound()">Bolo de Baunilha</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/+produtos/" role="menuitem" onmouseover="playHoverSound()">+Produtos</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/+produtos/sobremesas/" role="menuitem" onmouseover="playHoverSound()">Sobremesas</a>
-              <a href="https://gvitagula.github.io/+produtos/bebidas/" role="menuitem" onmouseover="playHoverSound()">Bebidas</a>
-            </div>
-          </div>
-          <a href="https://gvitagula.github.io/precos/" role="menuitem" onmouseover="playHoverSound()">Preços</a>
+          <a href="https://gvitagula.github.io/paes/" onclick="playClickSound(); setActiveTab('paes')" onmouseover="playHoverSound()" role="menuitem">Pães</a>
+          <a href="https://gvitagula.github.io/biscoitos/" onclick="playClickSound(); setActiveTab('biscoitos')" onmouseover="playHoverSound()" role="menuitem">Biscoitos</a>
+          <a href="https://gvitagula.github.io/bolos/" class="active" onclick="playClickSound(); setActiveTab('bolos')" onmouseover="playHoverSound()" role="menuitem">Bolos</a>
+          <a href="https://gvitagula.github.io/outros/" onclick="playClickSound(); setActiveTab('outros')" onmouseover="playHoverSound()" role="menuitem">Outros Produtos</a>
+          <a href="https://gvitagula.github.io/precos/" onclick="playClickSound(); setActiveTab('precos')" onmouseover="playHoverSound()" role="menuitem">Preços</a>
         </div>
       </div>
-      <a class="nav-item" href="https://gvitagula.github.io/site/contatos" role="tab" onmouseover="playHoverSound()">Contatos</a>
-      <a class="nav-item" href="https://gvitagula.github.io/site/parceiros" role="tab" onmouseover="playHoverSound()">Parceiros</a>
-      <div class="nav-item dropdown" onclick="toggleDropdown(event, 'downloads')" onmouseover="playHoverSound()">
-        <span class="dropdown-toggle">Downloads</span>
+      <a class="nav-item" href="https://gvitagula.github.io/contatos/" onclick="playClickSound()" onmouseover="playHoverSound()" role="tab" aria-selected="false">Contatos</a>
+      <div class="nav-item dropdown" role="tab" aria-selected="false">
+        <span class="dropdown-toggle" onclick="playClickSound(); toggleDropdown(event, 'downloads')" onmouseover="playHoverSound()">Downloads</span>
         <div class="dropdown-content">
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/programas/" role="menuitem" onmouseover="playHoverSound()">Programas</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/programas/desktop/" role="menuitem" onmouseover="playHoverSound()">Desktop</a>
-              <a href="https://gvitagula.github.io/programas/mobile/" role="menuitem" onmouseover="playHoverSound()">Mobile</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/imagens/" role="menuitem" onmouseover="playHoverSound()">Imagens</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/imagens/paes/" role="menuitem" onmouseover="playHoverSound()">Pães</a>
-              <a href="https://gvitagula.github.io/imagens/produtos/" role="menuitem" onmouseover="playHoverSound()">Outros Produtos</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/video/" role="menuitem" onmouseover="playHoverSound()">Vídeo</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/video/receitas/" role="menuitem" onmouseover="playHoverSound()">Receitas</a>
-              <a href="https://gvitagula.github.io/video/tutoriais/" role="menuitem" onmouseover="playHoverSound()">Tutoriais</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/mp3/" role="menuitem" onmouseover="playHoverSound()">Mp3</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/mp3/musicas/" role="menuitem" onmouseover="playHoverSound()">Músicas</a>
-              <a href="https://gvitagula.github.io/mp3/efeitos/" role="menuitem" onmouseover="playHoverSound()">Efeitos</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/pdf/" role="menuitem" onmouseover="playHoverSound()">PDF</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/pdf/catalogos/" role="menuitem" onmouseover="playHoverSound()">Catálogos</a>
-              <a href="https://gvitagula.github.io/pdf/manuais/" role="menuitem" onmouseover="playHoverSound()">Manuais</a>
-            </div>
-          </div>
-          <div class="submenu-item">
-            <a href="https://gvitagula.github.io/outros/" role="menuitem" onmouseover="playHoverSound()">Outros</a>
-            <div class="submenu">
-              <a href="https://gvitagula.github.io/outros/documentos/" role="menuitem" onmouseover="playHoverSound()">Documentos</a>
-              <a href="https://gvitagula.github.io/outros/outros/" role="menuitem" onmouseover="playHoverSound()">Outros Arquivos</a>
-            </div>
-          </div>
+          <a href="https://gvitagula.github.io/programas/" onclick="playClickSound(); setActiveTab('programas')" onmouseover="playHoverSound()" role="menuitem">Programas</a>
+          <a href="https://gvitagula.github.io/imagens/" onclick="playClickSound(); setActiveTab('imagens')" onmouseover="playHoverSound()" role="menuitem">Imagens</a>
+          <a href="https://gvitagula.github.io/videos/" onclick="playClickSound(); setActiveTab('videos')" onmouseover="playHoverSound()" role="menuitem">Vídeos</a>
+          <a href="https://gvitagula.github.io/audios/" onclick="playClickSound(); setActiveTab('audios')" onmouseover="playHoverSound()" role="menuitem">Áudios</a>
+          <a href="https://gvitagula.github.io/texto/" onclick="playClickSound(); setActiveTab('texto')" onmouseover="playHoverSound()" role="menuitem">Texto</a>
+          <a href="https://gvitagula.github.io/outros/" onclick="playClickSound(); setActiveTab('outros')" onmouseover="playHoverSound()" role="menuitem">Outros</a>
         </div>
       </div>
+      <a class="nav-item" href="https://gvitagula.github.io/parceiros/" onclick="playClickSound()" onmouseover="playHoverSound()" role="tab" aria-selected="false">Parceiros</a>
     </div>
     <div class="tab-content">
       <h3>Nossos Bolos</h3>
       <button class="expand-btn" onclick="toggleExpand()">Exibir</button>
       <div class="expanded-message" id="expanded-message">
-        <p>Na Fábrica Vita Gula, nossos bolos são preparados com ingredientes frescos e receitas que equilibram tradição e inovação. Cada bolo é assado com cuidado para garantir textura macia e sabor inesquecível, perfeito para celebrações ou momentos especiais.</p>
-        <p>Oferecemos opções personalizadas e sob encomenda, incluindo bolos sem glúten e veganos.</p>
+        <p>Na Fábrica Vita Gula, nossos bolos são preparados com receitas caseiras, usando ingredientes frescos e naturais. Oferecemos opções para todos os gostos, desde bolos simples até versões recheadas e decoradas, perfeitos para festas ou um café da tarde.</p>
+        <p>Personalizamos encomendas para eventos especiais, com entregas na região. Entre em contato para mais detalhes!</p>
+        <div class="product-links">
+          <a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a>
+          <a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a>
+          <a href="https://gvitagula.github.io/outros/" target="_blank" rel="noopener noreferrer">Outros Produtos</a>
+        </div>
         <button class="next-btn" id="next-btn-message" onclick="nextMessage()">Próxima Mensagem</button>
       </div>
       <div class="product-gallery">
         <div class="product-card" data-index="0">
           <img src="https://i.ibb.co/KpMGd1SH/27-Bolinho.jpg" alt="Bolinho" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolinho</h4>
-          <p>Macio, ideal para lanches.</p>
+          <p>Pequeno, fofinho e cheio de sabor, ideal para lanches rápidos.</p>
         </div>
         <div class="product-card" data-index="1">
           <img src="https://i.ibb.co/WWrnb5TL/28-Bolo-Fofo.jpg" alt="Bolo Fofo" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolo Fofo</h4>
-          <p>Leve, perfeito com café.</p>
+          <p>Macio e leve, perfeito com um chá ou café.</p>
         </div>
         <div class="product-card" data-index="2">
           <img src="https://i.ibb.co/mrjDfp4P/29-Bolo-Ingles.jpg" alt="Bolo Inglês" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Bolo Inglês</h4>
-          <p>Frutas secas, para ocasiões.</p>
+          <p>Clássico com frutas cristalizadas, ideal para ocasiões especiais.</p>
         </div>
         <div class="product-card" data-index="3">
           <img src="https://i.ibb.co/yF6Cbd0r/30-Pizza.jpg" alt="Pizza" onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível';">
           <h4>Pizza</h4>
-          <p>Única, ideal para eventos.</p>
+          <p>Salgada e crocante, uma opção diferenciada para eventos.</p>
         </div>
       </div>
       <div class="visitor-counter">Visitas: <span id="visit-count">1000</span></div>
     </div>
   </div>
 
-  <div class="zoom-overlay" id="zoom-overlay">
+  <div class="zoom-overlay" id="zoom-overlay" role="dialog" aria-label="Galeria de imagens ampliada" aria-live="polite">
     <div class="zoom-image-container">
-      <img class="zoom-image" id="zoom-image" src="" alt="Imagem Ampliada">
+      <img class="zoom-image" id="zoom-image" src="" alt="Imagem ampliada" aria-hidden="false">
       <div class="zoom-nav">
-        <button class="zoom-btn previous" onclick="navigateZoom('previous')" onmouseover="playHoverSound()">◄</button>
-        <button class="zoom-btn next" onclick="navigateZoom('next')" onmouseover="playHoverSound()">►</button>
+        <button class="zoom-btn previous" onclick="navigateZoom('previous')" onmouseover="playHoverSound()" aria-label="Imagem anterior">◄</button>
+        <button class="zoom-btn next" onclick="navigateZoom('next')" onmouseover="playHoverSound()" aria-label="Próxima imagem">►</button>
       </div>
     </div>
   </div>
@@ -927,7 +777,7 @@
 
   <div id="megaphone-message" class="megaphone-message">
     🎉 Temos boas ofertas para você! 🎉
-    <button onclick="hideMegaphoneMessage()">Fechar</button>
+    <button onclick="hideMegaphoneMessage()" style="margin-top: 10px; padding: 5px 10px; background-color: #ffffff; color: #ff6f61; border: none; border-radius: 5px; cursor: pointer;">Fechar</button>
   </div>
 
   <script>
@@ -945,6 +795,10 @@
       "https://raw.githubusercontent.com/gvitagula/site/refs/heads/main/aud/musica3.mp3"
     ];
     let currentTrackIndex = 0;
+    let currentZoomIndex = -1;
+    const productCards = document.querySelectorAll('.product-card');
+    const zoomOverlay = document.getElementById('zoom-overlay');
+    const zoomImage = document.getElementById('zoom-image');
 
     function handleFirstClick() {
       if (!hasClicked) {
@@ -970,7 +824,7 @@
       const volumeIcon = document.getElementById('volume-icon');
       const muteIcon = volumeIcon.querySelector('.volume-mute');
       const lowIcon = volumeIcon.querySelector('.volume-low');
-      const mediumIcon = document.getElementById('volume-icon').querySelector('.volume-medium');
+      const mediumIcon = volumeIcon.querySelector('.volume-medium');
       const highIcon = volumeIcon.querySelector('.volume-high');
       volumeIcon.classList.remove('mute', 'low', 'medium', 'high');
       muteIcon.style.display = 'none';
@@ -1080,45 +934,59 @@
     audio.src = tracks[currentTrackIndex];
     audio.load();
 
-    let currentZoomIndex = -1;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const productCards = document.querySelectorAll('.product-card');
-    const zoomOverlay = document.getElementById('zoom-overlay');
-    const zoomImage = document.getElementById('zoom-image');
-
     function toggleDropdown(event, tabName) {
       event.preventDefault();
       event.stopPropagation();
-      const dropdown = event.currentTarget;
+      const dropdown = event.currentTarget.parentElement;
       const isOpen = dropdown.classList.contains('open');
       document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      if (!isOpen) dropdown.classList.add('open');
+      if (!isOpen && (tabName === 'produtos' || tabName === 'downloads')) {
+        dropdown.classList.add('open');
+      }
       playClickSound();
     }
 
+    function setActiveTab(tabName) {
+      document.querySelectorAll('.dropdown-content a').forEach(link => {
+        link.classList.remove('active');
+        if (link.href.includes(tabName)) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setActiveTab('bolos');
+    });
+
     document.addEventListener('click', (event) => {
-      if (!event.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      }
+      const dropdowns = document.querySelectorAll('.dropdown');
+      let isInsideDropdown = false;
+      dropdowns.forEach(dropdown => {
+        if (dropdown.contains(event.target)) isInsideDropdown = true;
+      });
+      if (!isInsideDropdown) dropdowns.forEach(dropdown => dropdown.classList.remove('open'));
     });
 
     let messageIndex = 0;
     const messages = [
-      `<p>Na Fábrica Vita Gula, nossos bolos são preparados com ingredientes frescos e receitas que equilibram tradição e inovação. Cada bolo é assado com cuidado para garantir textura macia e sabor inesquecível, perfeito para celebrações ou momentos especiais.</p><p>Oferecemos opções personalizadas e sob encomenda, incluindo bolos sem glúten e veganos.</p>`,
-      `<p>Entre em contato para fazer seu pedido ou venha nos visitar. Entregamos em toda a região e personalizamos encomendas de acordo com sua necessidade. Horário de atendimento: 08:00 - 18:00, de segunda a sábado.</p>`
+      `<p>Na Fábrica Vita Gula, nossos bolos são preparados com receitas caseiras, usando ingredientes frescos e naturais. Oferecemos opções para todos os gostos, desde bolos simples até versões recheadas e decoradas, perfeitos para festas ou um café da tarde.</p><p>Personalizamos encomendas para eventos especiais, com entregas na região. Entre em contato para mais detalhes!</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/outros/" target="_blank" rel="noopener noreferrer">Outros Produtos</a></div>`,
+      `<p>Faça seu pedido com antecedência para garantir sua entrega. Disponibilizamos bolos para aniversários, casamentos e eventos corporativos. Horário de atendimento: 08:00 - 18:00, de segunda a sábado.</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/outros/" target="_blank" rel="noopener noreferrer">Outros Produtos</a></div>`
     ];
 
     function toggleExpand() {
       const message = document.getElementById('expanded-message');
       const expandBtn = document.querySelector('.expand-btn');
       const nextBtn = document.getElementById('next-btn-message');
-      message.classList.toggle('show');
-      if (message.classList.contains('show')) {
+      const isExpanded = message.classList.contains('show');
+
+      if (!isExpanded) {
+        message.classList.add('show');
         message.innerHTML = messages[messageIndex];
         nextBtn.style.display = messageIndex < messages.length - 1 ? 'inline-block' : 'none';
         expandBtn.textContent = 'Ocultar';
       } else {
+        message.classList.remove('show');
         nextBtn.style.display = 'none';
         expandBtn.textContent = 'Exibir';
       }
@@ -1136,60 +1004,56 @@
 
     function openZoom(index) {
       currentZoomIndex = index;
-      const imgSrc = productCards[index].querySelector('img').src;
-      zoomImage.src = imgSrc;
+      const imageSrc = productCards[index].querySelector('img').src;
+      zoomImage.src = imageSrc || 'https://via.placeholder.com/370';
       zoomOverlay.classList.add('active');
       zoomImage.style.transform = 'translate(-50%, -50%) scale(1)';
+      zoomOverlay.setAttribute('aria-label', `Imagem ampliada ${index + 1} de ${productCards.length}: ${productCards[index].querySelector('h4').textContent}`);
+      playClickSound();
     }
 
     function closeZoom() {
       zoomOverlay.classList.remove('active');
       currentZoomIndex = -1;
+      playClickSound();
     }
 
     function navigateZoom(direction) {
       if (currentZoomIndex === -1) return;
-      let newIndex;
-      if (direction === 'next') {
-        newIndex = (currentZoomIndex + 1) % productCards.length;
-      } else {
-        newIndex = (currentZoomIndex - 1 + productCards.length) % productCards.length;
-      }
-      zoomImage.style.transform = direction === 'next' ? 'translate(-50%, -50%) translateX(-100%)' : 'translate(-50%, -50%) translateX(100%)';
-      setTimeout(() => {
-        openZoom(newIndex);
-      }, 300);
+      let newIndex = (currentZoomIndex + (direction === 'next' ? 1 : -1) + productCards.length) % productCards.length;
+      requestAnimationFrame(() => {
+        zoomImage.style.transform = direction === 'next' ? 'translate(-50%, -50%) translateX(100%)' : 'translate(-50%, -50%) translateX(-100%)';
+        setTimeout(() => {
+          openZoom(newIndex);
+          zoomImage.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 300);
+      });
     }
 
     productCards.forEach((card, index) => {
       const img = card.querySelector('img');
       img.addEventListener('click', () => openZoom(index));
+      img.addEventListener('error', () => {
+        img.src = 'https://via.placeholder.com/120?text=Imagem+Indisponível';
+      });
     });
 
     zoomOverlay.addEventListener('click', (e) => {
-      if (e.target === zoomOverlay) closeZoom();
+      if (e.target !== zoomImage && !e.target.closest('.zoom-nav')) {
+        closeZoom();
+      }
     });
 
-    zoomOverlay.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    zoomOverlay.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].clientX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const swipeDistance = touchEndX - touchStartX;
-      if (swipeDistance > 50) {
-        navigateZoom('previous');
-      } else if (swipeDistance < -50) {
-        navigateZoom('next');
-      }
+    function activateMegaphone() {
+      audio.volume = 1.0;
+      const megaphoneMessage = document.getElementById('megaphone-message');
+      megaphoneMessage.style.display = 'block';
+      setTimeout(hideMegaphoneMessage, 5000);
     }
 
     function hideMegaphoneMessage() {
-      document.getElementById('megaphone-message').style.display = 'none';
+      const megaphoneMessage = document.getElementById('megaphone-message');
+      megaphoneMessage.style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1197,8 +1061,7 @@
       visitCount++;
       localStorage.setItem('visitCount', visitCount);
       document.getElementById('visit-count').textContent = visitCount;
-      document.getElementById('megaphone-message').style.display = 'block';
-      setTimeout(hideMegaphoneMessage, 5000);
+      activateMegaphone();
     });
   </script>
 </body>
