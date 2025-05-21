@@ -776,7 +776,7 @@
           <a href="https://gvitagula.github.io/paes/" onclick="playClickSound(); setActiveTab('paes')" onmouseover="playHoverSound()" role="menuitem">Pães</a>
           <a href="https://gvitagula.github.io/biscoitos/" onclick="playClickSound(); setActiveTab('biscoitos')" onmouseover="playHoverSound()" role="menuitem">Biscoitos</a>
           <a href="https://gvitagula.github.io/bolos/" class="active" onclick="playClickSound(); setActiveTab('bolos')" onmouseover="playHoverSound()" role="menuitem">Bolos</a>
-          <a href="https://gvitagula.github.io/+produtos/" onclick="playClickSound(); setActiveTab('outros')" onmouseover="playHoverSound()" role="menuitem">Outros Produtos</a>
+          <a href="https://gvitagula.github.io/mais_produtos/" onclick="playClickSound(); setActiveTab('outros')" onmouseover="playHoverSound()" role="menuitem">+Produtos</a>
           <a href="https://gvitagula.github.io/precos/" onclick="playClickSound(); setActiveTab('precos')" onmouseover="playHoverSound()" role="menuitem">Preços</a>
         </div>
       </div>
@@ -803,7 +803,7 @@
         <div class="product-links">
           <a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a>
           <a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a>
-          <a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">Outros Produtos</a>
+          <a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">+Produtos</a>
         </div>
         <button class="next-btn" id="next-btn-message" onclick="nextMessage()">Próxima Mensagem</button>
       </div>
@@ -1044,8 +1044,9 @@
 
     let messageIndex = 0;
     const messages = [
-      `<p>Na Fábrica Vita Gula, nossos bolos são preparados com receitas caseiras, usando ingredientes frescos e naturais. Oferecemos opções para todos os gostos, desde bolos simples até versões recheadas e decoradas, perfeitos para festas ou um café da tarde.</p><p>Personalizamos encomendas para eventos especiais, com entregas na região. Entre em contato para mais detalhes!</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">Outros Produtos</a></div>`,
-      `<p>Entre em contato para fazer seu pedido ou venha nos visitar. Entregamos em toda a região e personalizamos encomendas de acordo com sua necessidade. Horário de atendimento: 08:00 - 18:00, de segunda a sábado.</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">Outros Produtos</a></div>`
+      `<p>Na Fábrica Vita Gula, nossos bolos são preparados com receitas caseiras, usando ingredientes frescos e naturais. Oferecemos opções para todos os gostos, desde bolos simples até versões recheadas e decoradas, perfeitos para festas ou um café da tarde.</p><p>Personalizamos encomendas para eventos especiais, com entregas na região. Entre em contato para mais detalhes!</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">+Produtos</a></div>`,
+      `<p>Entre em contato para fazer seu pedido ou venha nos visitar. Entregamos em toda a região e personalizamos encomendas de acordo com sua necessidade. Horário de atendimento: 08:00 - 18:00, de segunda a sábado.</p><div class="product-links"><a href="https://gvitagula.github.io/paes/" target="_blank" rel="noopener noreferrer">Pães</a><a href="https://gvitagula.github.io/biscoitos/" target="_blank" rel="noopener noreferrer">Biscoitos</a><a href="https://gvitagula.github.io/+produtos/" target="_blank" rel="noopener noreferrer">+
+      Produtos</a></div>`
     ];
 
     function toggleExpand() {
